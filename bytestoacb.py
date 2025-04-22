@@ -31,7 +31,6 @@ def rename_files(target_dir, recursive=False, dry_run=False):
         sys.exit(1)
 
     if recursive:
-        # os.walk yields (directory_path, subdirectories, filenames)
         walker = os.walk(target_dir)
     else:
 
@@ -40,8 +39,8 @@ def rename_files(target_dir, recursive=False, dry_run=False):
             files = [f for f in items if os.path.isfile(os.path.join(target_dir, f))]
             walker = [(target_dir, [], files)]
         except OSError as e:
-             print(f"Error accessing directory '{target_dir}': {e}")
-             sys.exit(1)
+            print(f"Error accessing directory '{target_dir}': {e}")
+            sys.exit(1)
 
 
     # Process files
@@ -77,7 +76,7 @@ def rename_files(target_dir, recursive=False, dry_run=False):
     if not dry_run:
         print(f"Successfully renamed: {rename_count} file(s).")
     else:
-         print(f"Files that would be renamed: {rename_count}") # In dry run, count potential renames
+        print(f"Files that would be renamed: {rename_count}") # In dry run, count potential renames
     if error_count > 0:
         print(f"Skipped/Errors: {error_count} file(s).")
 
